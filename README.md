@@ -23,3 +23,5 @@ Create a new file `lastfm.json` in the cloned directory and enter your API key/s
 ```
 
 # Running
+
+`python3 lastripper.py --username <USERNAME> --limit 100 --output-folder ~/Downloads/top100`
