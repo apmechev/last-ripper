@@ -13,8 +13,12 @@ def youtube_url_for_track(track):
     html = response.content.decode('utf8')
 
     match = youtube_url_finder.search(html)
-    start = html.index('https://www.youtube.com/watch?v=')
-    end = html.index('"', start)
 
-    url = html[start:end]
-    return url
+    try:
+        start = html.index('https://www.youtube.com/watch?v=')
+        end = html.index('"', start)
+
+        url = html[start:end]
+        return url
+    except:
+        return None
