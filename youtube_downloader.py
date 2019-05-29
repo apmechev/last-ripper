@@ -6,7 +6,8 @@ ydl_opts = {
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
         'preferredquality': '192',
-    }]
+    },
+    {'key': 'FFmpegMetadata'}]
 }
 
 def download_video(youtube_url):
@@ -15,4 +16,4 @@ def download_video(youtube_url):
         ydl.download([youtube_url])
 
 if __name__ == '__main__':
-    download_video(['https://www.youtube.com/watch?v=aCrrsm0U4t0'])
+    download_video('https://www.youtube.com/watch?v=aCrrsm0U4t0')
