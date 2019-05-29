@@ -2,7 +2,8 @@ from find_youtube_urls import youtube_url_for_track
 from lastfm import get_top_tracks
 from youtube_downloader import download_video
 
-def download_tracks(user_name, limit=1):
+def download_tracks(user_name, limit, output_folder):
+    print(output_folder)
     tracks = get_top_tracks(user_name, limit=limit)
 
     for track in tracks:
