@@ -9,9 +9,9 @@ def download_tracks(user_name, limit=1):
         youtube_url = youtube_url_for_track(track.item)
 
         if not youtube_url:
-            print("Couldn't parse url for", youtube_url)
+            print("Couldn't parse url for", track.item.name)
             continue
-            
+
         download_video(youtube_url)
 
 if __name__ == '__main__':
