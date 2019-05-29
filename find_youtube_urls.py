@@ -1,16 +1,29 @@
 import itertools
 import pylast
+import requests
+import re
 
-def get_last_fm_tracks(username):
-    pass
+from lastfm import get_top_tracks
 
-def youtube_url_for_track(track_id):
-    pass
+youtube_url_finder = re.compile('watch\\?\\=', re.M)
 
-def find_youtube_urls(username, limit=10):
-    tracks = get_last_fm_tracks(username)
-    for track in itertools.islice(tracks, limit):
-        youtube_url = youtube_url_for_track(track)
-        print(youtube_url)
+def youtube_url_for_track(track):
+    page_url = f'https://www.last.fm/music/{track.artist.name}/_/{track.title}'
+    response = requests.get(page_url)
+    html = response.content.decode('utf8')
+
+    match = youtube_url_finder.search(html)
+    start = html.index('https://www.youtube.com/watch?v=')
+    end = html.index('"', start)
+
+    url = html[start:end]
+    return url
+
+def find_youtube_urls(username, limit=1):
+    tracks = get_top_tracks(username, limit=limit)
+
+    for track in tracks:
+        youtube_url = youtube_url_for_track(track.item)
+        print(track.item, '-', youtube_url)
 
 find_youtube_urls('dntbrsnbl')
