@@ -18,12 +18,3 @@ def youtube_url_for_track(track):
 
     url = html[start:end]
     return url
-
-def find_youtube_urls(username, limit=1):
-    tracks = get_top_tracks(username, limit=limit)
-
-    for track in tracks:
-        youtube_url = youtube_url_for_track(track.item)
-        print(track.item, '-', youtube_url)
-
-find_youtube_urls('dntbrsnbl')
