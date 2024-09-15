@@ -1,4 +1,4 @@
-import youtube_dl
+import yt_dlp
 
 def download_video(youtube_url, output_folder):
     ydl_opts = {
@@ -11,7 +11,7 @@ def download_video(youtube_url, output_folder):
         },
         {'key': 'FFmpegMetadata'}]
     }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([youtube_url])
 
 if __name__ == '__main__':
